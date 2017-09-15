@@ -27,10 +27,10 @@ public enum Prefs {
     public void login(String email, String password, boolean encryptPassword) {
         if(encryptPassword)
             password = encryptPassword(password);
-
-        loginPreferences.
-
+        loginPreferences.saveLogin(email, password, encryptPassword);
     }
+
+
 
     private String encryptPassword(String password) {
         String encryptedPassword = password;
@@ -40,8 +40,9 @@ public enum Prefs {
         return encryptedPassword;
     }
 
-    private class LoginEncrypt {
 
+    //WARNING-Please change the code//
+    private class LoginEncrypt {
         public String encrypt(String seed, String cleartext) throws Exception {
             byte[] rawKey = getRawKey(seed.getBytes());
             byte[] result = encrypt(rawKey, cleartext.getBytes());
